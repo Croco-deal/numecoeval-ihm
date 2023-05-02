@@ -1,0 +1,18 @@
+<div class="album py-5 ">
+    <div class="container">
+        <div class="ms-xl-auto ">
+            <a [routerLink]="['/upload']" class="btn btn-sm btn btn-success mb-0 header-btn mt-2 tn-api-btn">Upload</a>
+        </div>
+        <h2 class="text-center mb-3"> HISTORY</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col" *ngFor="let object of history;let i = index;">
+                <div class="card shadow-sm" (click)="resultPage(object.id)">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="30%" y="50%" fill="#eceeef" dy=".3em">
+                        {{object.title}}
+                        {{object.date}}</text></svg>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

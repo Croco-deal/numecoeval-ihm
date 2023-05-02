@@ -1,0 +1,43 @@
+<div class="container mt-5">
+    <div class="uploader">
+        <div class="row text-center justify-content-center mb-5">
+            <div class="col-xl-6 col-lg-8">
+                <h2 class="font-weight-bold">chargement-entrees</h2>
+            </div>
+        </div>
+        <div class="timeline-steps">
+            <div class="timeline-step" [class.active]="i+1 <= progression" *ngFor="let object of timeline;let i = index;">
+                <span class="circle">{{object.id}} </span>
+                <span class="title">{{object.title}}</span>
+            </div>
+        </div>
+        <div class="upload">
+            <p>Fichier</p>
+            <div class="container upload" appDnd (fileDropped)="onFileDropped($event)">
+                <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+                <h3>Drag and drop file here</h3>
+                <h3>or</h3>
+                <label for="fileDropRef">Browse for file</label>
+            </div>
+            <div class="files-list">
+                <div class="single-file" *ngFor="let file of files; let i = index">
+                    <img src="assets/img/ic-file.svg" width="45px" alt="file">
+                    <div class="info">
+                        <h4 class="name">
+                            {{ file?.name }}
+                        </h4>
+                        <p class="size">
+                            {{ formatBytes(file?.size) }}
+                        </p>
+                        <app-progress [progress]="file?.progress"></app-progress>
+                    </div>
+                    <img src="assets/img/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
+                </div>
+            </div>
+            <div class="ms-xl-auto ">
+                <a target="" class="btn btn-sm btn btn-success mb-0 header-btn mt-2 tn-api-btn" (click)="next()">Continuer</a>
+                <a target="" class="btn btn-sm btn btn-danger mb-0 ms-xl-3 header-btn mt-2 tn-api-btn">Ignorer</a>
+            </div>
+        </div>
+    </div>
+</div>

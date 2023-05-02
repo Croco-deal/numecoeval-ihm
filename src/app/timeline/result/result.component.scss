@@ -1,0 +1,16 @@
+tbody {
+    tr {
+        text-align: left;
+        td:first-child {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    tr:nth-child(even) {
+        background: #dee2e6
+    }
+}
+
+.ok {
+    display: block;
+}

@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+a {
+    &.btn {
+        padding: 8px 16px;
+        &.btn-success {
+            background-color: #145839 !important;
+        }
+    }
+}
