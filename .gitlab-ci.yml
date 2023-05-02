@@ -1,15 +1,26 @@
 include:
   - project: "pub/numeco/m4g/ci-library"
     ref: main
-    file: "/stages/build/build-image-kaniko.yml"
-  - project: "pub/numeco/m4g/ci-library"
-    ref: main
-    file: "/stages/analysis/mte-image-scan.yml"
+    file: "/stages/build/fragments/build-image-kaniko-fragments.yml"
 #  - project: "pub/numeco/m4g/ci-library"
 #    ref: main
-#    file: "/stages/analysis/sonarqube.yml"
+#    file: "/stages/analysis/mte-image-scan.yml"
+
 
 
 stages:
   - build-image
 #  - analysis
+
+build-image:
+  stage: build-image
+  extends: .kaniko_build
+  variables:
+    DOCKER_USER: $CI_REGISTRY_USER
+    DOCKER_PASSWORD: $CI_REGISTRY_PASSWORD
+    REGISTRY_URL: $CI_REGISTRY
+    IMAGE_URL: $CI_REGISTRY_IMAGE
+  only:
+    - main
+    - develop
+    - tags
