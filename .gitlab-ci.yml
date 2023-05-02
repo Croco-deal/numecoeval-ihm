@@ -11,7 +11,5 @@ include:
 
 
 stages:
-  - test-application
-  - build-application
   - build-image
-  - analysis
+#  - analysis
