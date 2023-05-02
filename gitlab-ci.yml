@@ -1,0 +1,17 @@
+include:
+  - project: "pub/numeco/m4g/ci-library"
+    ref: main
+    file: "/stages/build/build-image-kaniko.yml"
+  - project: "pub/numeco/m4g/ci-library"
+    ref: main
+    file: "/stages/analysis/mte-image-scan.yml"
+#  - project: "pub/numeco/m4g/ci-library"
+#    ref: main
+#    file: "/stages/analysis/sonarqube.yml"
+
+
+stages:
+  - test-application
+  - build-application
+  - build-image
+  - analysis
