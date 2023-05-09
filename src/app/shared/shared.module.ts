@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
+import {RouterLinkWithHref} from "@angular/router";
 
 
 
@@ -8,9 +9,10 @@ import { HeaderComponent } from './header/header.component';
   declarations: [
     HeaderComponent
   ],
-  imports: [
-    CommonModule
-  ],
+    imports: [
+        CommonModule,
+        RouterLinkWithHref
+    ],
   exports : [
     HeaderComponent
   ]

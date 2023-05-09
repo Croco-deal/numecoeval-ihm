@@ -14,7 +14,7 @@
         <div class="upload">
             <p>Fichier</p>
             <div class="container upload" appDnd (fileDropped)="onFileDropped($event)">
-                <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+                <input type="file" accept=".csv" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
                 <h3>Drag and drop file here</h3>
                 <h3>or</h3>
                 <label for="fileDropRef">Browse for file</label>
@@ -34,7 +34,7 @@
                     <img src="assets/img/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
                 </div>
             </div>
-            <div class="ms-xl-auto ">
+            <div class="go-btns">
                 <a target="" class="btn btn-sm btn btn-success mb-0 header-btn mt-2 tn-api-btn" (click)="next()">Continuer</a>
                 <a target="" class="btn btn-sm btn btn-danger mb-0 ms-xl-3 header-btn mt-2 tn-api-btn">Ignorer</a>
             </div>
