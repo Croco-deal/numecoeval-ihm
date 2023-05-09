@@ -1,0 +1,78 @@
+<div class="container mt-5">
+    <div class="uploader">
+        <div class="row text-center justify-content-center mb-5">
+            <div class="col-xl-6 col-lg-8">
+                <h2 class="font-weight-bold">chargement-Référentiel</h2>
+            </div>
+        </div>
+        <div class="dropdown text-center row">
+            <a class="btn btn-outline-dark ms-3 dropdown-toggle col-xs-4" data-bs-toggle="dropdown"
+               aria-expanded="false">
+                {{selectedRef? selectedRef.name : 'Type de Référentiel'}}
+            </a>
+            <ul class="dropdown-menu text-small mt-4 me-2">
+                <li *ngFor="let type of types">
+                    <a (click)="onSelectType(type)" class="dropdown-item">{{type.name}}</a>
+                </li>
+            </ul>
+
+
+        </div>
+
+        <div class="upload">
+            <p>Fichier</p>
+            <div class="container upload" appDnd (fileDropped)="onFileDropped($event)">
+                <input type="file" accept=".csv" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)"/>
+                <h3>Drag and drop file here</h3>
+                <h3>or</h3>
+                <label for="fileDropRef">Browse for file</label>
+            </div>
+            <div class="files-list">
+                <div class="single-file" *ngFor="let file of files; let i = index">
+                    <img src="assets/img/ic-file.svg" width="45px" alt="file">
+                    <div class="info">
+                        <h4 class="name">
+                            {{ file?.name }}
+                        </h4>
+                        <p class="size">
+                            {{ formatBytes(file?.size) }}
+                        </p>
+                    </div>
+                    <img src="assets/img/ic-delete-file.svg" class="delete" width="20px" alt="file"
+                         (click)="deleteFile(i)">
+                </div>
+            </div>
+            <div class="go-btns">
+                <button  [disabled]="!files || files.length === 0" target="" class="btn btn-sm btn btn-success mb-0 header-btn mt-2 tn-api-btn" (click)="openPopup()">Charger</button>
+            </div>
+        </div>
+    </div>
+
+    <div
+            class="modal"
+            tabindex="-1"
+            role="dialog"
+            [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Fichier chargé avec succès</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Le fichier de référentiel {{files && files[0] && files[0].name ? files[0].name : ''}} pour le type {{selectedRef? selectedRef.name : ''}} est chargé, voulez-vous uploader un autre?</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success"
+                            (click)="closePopup()">
+                        Charger un autre fichier
+                    </button>
+                    <button type="button" class="btn btn-danger"
+                            (click)="goToIndex()">
+                        Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
