@@ -4,23 +4,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { TimelineModule } from './timeline/timeline.module';
-import { HistoryModule } from './history/history.module';
-import { ReferencialComponent } from './referencial/referencial.component';
+import { TimelineModule } from './components/timeline/timeline.module';
+import { HistoryModule } from './components/history/history.module';
+import { ReferentialComponent } from './components/referential/referential.component';
+import { ReferentialListComponent } from './components/referential-list/referential-list.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReferencialComponent,
+    ReferentialComponent,
+    ReferentialListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     TimelineModule,
-    HistoryModule
+    HistoryModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

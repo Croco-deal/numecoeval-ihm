@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <div class="uploader">
+        <div class="row text-center justify-content-center mb-5">
+            <div class="col-xl-6 col-lg-8">
+                <h2 class="font-weight-bold">Référentiels</h2>
+            </div>
+        </div>
+        <div class="dropdown text-center row">
+            <a class="btn btn-outline-dark ms-3 dropdown-toggle col-xs-4" data-bs-toggle="dropdown"
+               aria-expanded="false">
+                {{selectedRef? selectedRef.name : 'Type de Référentiel'}}
+            </a>
+            <ul class="dropdown-menu text-small mt-4 me-2">
+                <li *ngFor="let type of types">
+                    <a (click)="onSelectType(type)" class="dropdown-item">{{type.name}}</a>
+                </li>
+            </ul>
+            <a class="col-xs-4">
+                {{reqResult? JSON.stringify(reqResult) : ''}}
+            </a>
+
+
+        </div>
+
+    </div>
+
+</div>

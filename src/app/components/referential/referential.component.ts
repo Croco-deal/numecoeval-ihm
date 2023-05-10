@@ -3,11 +3,11 @@ import { ViewChild, ElementRef } from "@angular/core";
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-referencial',
-  templateUrl: './referencial.component.html',
-  styleUrls: ['./referencial.component.scss']
+  selector: 'app-referential',
+  templateUrl: './referential.component.html',
+  styleUrls: ['./referential.component.scss']
 })
-export class ReferencialComponent implements OnInit {
+export class ReferentialComponent implements OnInit {
 
 
   constructor(private router:Router) { }

@@ -1,0 +1,9 @@
+{
+  "/api/*": {
+    "target": "https://api-referentiels-numecoeval.datahub.din.developpement-durable.gouv.fr",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {"^/api" : "https://api-referentiels-numecoeval.datahub.din.developpement-durable.gouv.fr"}
+  }
+}

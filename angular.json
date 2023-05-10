@@ -72,7 +72,8 @@
                             "browserTarget": "numecoeval-dashboard:build:production"
                         },
                         "development": {
-                            "browserTarget": "numecoeval-dashboard:build:development"
+                            "browserTarget": "numecoeval-dashboard:build:development",
+                            "proxyConfig": "proxy.conf.json"
                         }
                     },
                     "defaultConfiguration": "development"
