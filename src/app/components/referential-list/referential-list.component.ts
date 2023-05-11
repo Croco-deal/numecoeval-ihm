@@ -10,24 +10,25 @@ export class ReferentialListComponent implements OnInit {
 
   constructor(private service:ReferentialService) { }
   public types: any [] = [
-    { id: 'references-type-equipement', name: 'references-type-equipement' },
-    { id: 'references-messagerie', name: 'references-messagerie' },
-    { id: 'references-impact-equipement', name: 'references-impact-equipement' },
-    { id: 'references-correspondanceRefEquipement', name: 'references-correspondanceRefEquipement' },
-    { id: 'references-correspondanceRefMixElec', name: 'references-correspondanceRefMixElec' },
+    { id: 'references-type-equipement', name: 'references-type-equipement', apiSchema : "typesEquipement"},
+    { id: 'references-messagerie', name: 'references-messagerie',apiSchema : "impactsMessagerie"},
+    { id: 'references-impact-equipement', name: 'references-impact-equipement' , apiSchema : "typesEquipement"},
+    { id: 'references-correspondanceRefEquipement', name: 'references-correspondanceRefEquipement', apiSchema : "impactsMessagerie"},
+    { id: 'references-correspondanceRefMixElec', name: 'references-correspondanceRefMixElec', apiSchema : "typesEquipement"},
 
   ];
   public selectedRef: any = null;
-
-  public reqResult: any = null;
-
   ngOnInit(): void {
   }
 
+  tableColumnDefs = null;
+  tableRowData = null;
+
   onSelectType(type:any) {
-    this.service.getPosts() .subscribe(response => {
-      this.reqResult = response;
-      console.log(response);
+    this.service.getRefs(type.apiSchema) .subscribe((response:any) => {
+      let keys : any = (Object.keys(response[0])).map(f => {return {'field': f}});
+      this.tableColumnDefs = keys;
+      this.tableRowData = response;
     });
     this.selectedRef = type;
   }

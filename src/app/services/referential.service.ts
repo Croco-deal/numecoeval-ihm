@@ -6,11 +6,11 @@ import { environment } from './../../environments/environment';
   providedIn: 'root'
 })
 export class ReferentialService {
-  private url = environment.refApiURL + '/referentiel/typesEquipement';
+  private url = environment.refApiURL + '/referentiel/';
   constructor(private httpClient: HttpClient) { }
 
-  getPosts(){
-    return this.httpClient.get(this.url,{
+  getRefs( apiSchema : string){
+    return this.httpClient.get(this.url + apiSchema,{
       withCredentials: true
     });
   }

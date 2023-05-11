@@ -15,9 +15,14 @@
                     <a (click)="onSelectType(type)" class="dropdown-item">{{type.name}}</a>
                 </li>
             </ul>
-            <a class="col-xs-4">
-                {{reqResult? JSON.stringify(reqResult) : ''}}
-            </a>
+
+            <ag-grid-angular
+                    *ngIf="tableRowData && tableColumnDefs"
+                    style="height: 500px;"
+                    class="ag-theme-alpine"
+                    [rowData]="tableRowData"
+                    [columnDefs]="tableColumnDefs">
+            </ag-grid-angular>
 
 
         </div>

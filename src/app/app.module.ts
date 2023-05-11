@@ -9,6 +9,7 @@ import { HistoryModule } from './components/history/history.module';
 import { ReferentialComponent } from './components/referential/referential.component';
 import { ReferentialListComponent } from './components/referential-list/referential-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     TimelineModule,
     HistoryModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
