@@ -12,9 +12,10 @@ export class ReferentialListComponent implements OnInit {
   public types: any [] = [
     { id: 'references-type-equipement', name: 'references-type-equipement', apiSchema : "typesEquipement"},
     { id: 'references-messagerie', name: 'references-messagerie',apiSchema : "impactsMessagerie"},
-    { id: 'references-impact-equipement', name: 'references-impact-equipement' , apiSchema : "typesEquipement"},
+    { id: 'references-impact-equipement', name: 'references-impact-equipement' , apiSchema : "mixelecs?pays=France&critere=Changement%20climatique"},
     { id: 'references-correspondanceRefEquipement', name: 'references-correspondanceRefEquipement', apiSchema : "impactsMessagerie"},
     { id: 'references-correspondanceRefMixElec', name: 'references-correspondanceRefMixElec', apiSchema : "typesEquipement"},
+    { id: 'criteres', name: 'criteres' , apiSchema : "criteres"},
 
   ];
   public selectedRef: any = null;

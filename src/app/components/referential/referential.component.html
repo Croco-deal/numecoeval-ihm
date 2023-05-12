@@ -15,11 +15,20 @@
                     <a (click)="onSelectType(type)" class="dropdown-item">{{type.name}}</a>
                 </li>
             </ul>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button  [disabled]="!selectedRef" target="" class="btn btn-lg btn btn-success mb-0  mt-4 " (click)="downloadCSVFile()">Télécharger</button>
+            </div>
 
-
+            <div class="col ">
+                <button  [disabled]="!selectedRef" target="" class="btn btn-lg btn btn-success mb-0  mt-4" style="float: right;" (click)="showUploadDiv=true">Mettre a jour</button>
+            </div>
         </div>
 
-        <div class="upload">
+
+
+        <div *ngIf="showUploadDiv" class="upload">
             <p>Fichier</p>
             <div class="container upload" appDnd (fileDropped)="onFileDropped($event)">
                 <input type="file" accept=".csv" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)"/>
@@ -43,7 +52,7 @@
                 </div>
             </div>
             <div class="go-btns">
-                <button  [disabled]="!files || files.length === 0" target="" class="btn btn-sm btn btn-success mb-0 header-btn mt-2 tn-api-btn" (click)="openPopup()">Charger</button>
+                <button  [disabled]="!files || files.length === 0" target="" class="btn btn-sm btn btn-success mb-0 header-btn mt-2 tn-api-btn" (click)="openPopup()">Upload</button>
             </div>
         </div>
     </div>
@@ -69,7 +78,7 @@
                     </button>
                     <button type="button" class="btn btn-danger"
                             (click)="goToIndex()">
-                        Fermer
+                        Terminer
                     </button>
                 </div>
             </div>
