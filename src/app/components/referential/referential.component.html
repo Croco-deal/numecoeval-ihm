@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="go-btns">
-                <button  [disabled]="!files || files.length === 0" target="" class="btn btn-sm btn btn-success mb-0 header-btn mt-2 tn-api-btn" (click)="openPopup()">Upload</button>
+                <button  [disabled]="!files || files.length === 0" target="" class="btn btn-sm btn btn-success mb-0 header-btn mt-2 tn-api-btn" (click)="upload()">Upload</button>
             </div>
         </div>
     </div>
@@ -69,6 +69,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Le fichier de référentiel {{files && files[0] && files[0].name ? files[0].name : ''}} pour le type {{selectedRef? selectedRef.name : ''}} est chargé, voulez-vous uploader un autre?</p>
+                    <p>La réponse du serveur {{uploadResult?JSON.stringify(uploadResult.body):''}}</p>
 
                 </div>
                 <div class="modal-footer">

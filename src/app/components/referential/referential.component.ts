@@ -19,6 +19,7 @@ export class ReferentialComponent implements OnInit {
   @ViewChild("fileDropRef", { static: false })
   fileDropEl!: ElementRef;
   files: any[] = [];
+  uploadResult:any;
 
   /**
    * /referentiel/typeEquipement/csv
@@ -77,19 +78,22 @@ export class ReferentialComponent implements OnInit {
 
     this.service.upload(formData,"mixelecs/csv").pipe(
         map((event:any) => {
+
           debugger
           switch (event.type) {
             case HttpEventType.UploadProgress:
               file.progress = Math.round(event.loaded * 100 / event.total);
               break;
             case HttpEventType.Response:
+              this.openPopup();
+              this.uploadResult = event;
               return event;
           }
         }),
         catchError((error: HttpErrorResponse) => {
           debugger
           file.inProgress = false;
-          return of(`${file.data.name} upload failed.`);
+          return of(`${file.name} upload failed.`);
         })).subscribe((event: any) => {
       if (typeof (event) === 'object') {
         console.log(event.body);
@@ -183,7 +187,6 @@ export class ReferentialComponent implements OnInit {
   displayStyle = "none";
 
   openPopup() {
-    const response = this.upload()
     this.displayStyle = "block";
   }
 
@@ -201,5 +204,6 @@ export class ReferentialComponent implements OnInit {
     this.router.navigateByUrl('');
   }
 
+  protected readonly JSON = JSON;
 }
 

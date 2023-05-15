@@ -49,11 +49,11 @@ export class ReferentialService {
 
   public upload(formData:any,apiSchema : string) {
     return this.httpClient.post<any>(this.url + apiSchema, formData, {
+      responseType: 'json',
       reportProgress: true,
       observe: 'events',
-      withCredentials:true,
       headers: new HttpHeaders({
-        "Content-Type": "multipart/form-data",
+        // "Content-Type": "multipart/form-data",
         "accept": "application/hal+json"
       })
     });
