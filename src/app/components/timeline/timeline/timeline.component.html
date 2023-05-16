@@ -2,7 +2,7 @@
     <div class="uploader">
         <div class="row text-center justify-content-center mb-5">
             <div class="col-xl-6 col-lg-8">
-                <h2 class="font-weight-bold">chargement-entrees</h2>
+                <h2 class="font-weight-bold">chargement des données d'entrée</h2>
             </div>
         </div>
         <div class="timeline-steps">
@@ -12,12 +12,11 @@
             </div>
         </div>
         <div class="upload">
-            <p>Fichier</p>
             <div class="container upload" appDnd (fileDropped)="onFileDropped($event)">
                 <input type="file" accept=".csv" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
-                <h3>Drag and drop file here</h3>
-                <h3>or</h3>
-                <label for="fileDropRef">Browse for file</label>
+                <h3>Glisser-déposer les fichiers ici </h3>
+                <h3>ou</h3>
+                <label for="fileDropRef">sélectionner une fichier</label>
             </div>
             <div class="files-list">
                 <div class="single-file" *ngFor="let file of files; let i = index">

@@ -33,17 +33,18 @@ export class ReferentialComponent implements OnInit {
    * /referentiel/correspondanceRefEquipement/csv
    */
   public types: any [] = [
-    { id: 'references-type-equipement', name: 'Type Equipement',apiSchema:'typeEquipement'},
-      { id: 'references-mixelecs', name: 'Mixelecs',apiSchema:'mixelecs'},
-      { id: 'references-impact-reseaux', name: 'Impact Reseaux',apiSchema:'impactreseaux'},
-    { id: 'references-impact-equipements', name: 'Impact Equipement',apiSchema:'impactequipements'},
-    { id: 'references-impact-Messagerie', name: 'Impact Messagerie',apiSchema:'impactMessagerie'},
-    { id: 'references-hypotheses', name: 'hypotheses',apiSchema:'hypotheses'},
-    { id: 'references-etapes', name: 'Etapes',apiSchema:'etapes'},
-    { id: 'references-criteres', name: 'Criteres',apiSchema:'criteres'},
-    { id: 'references-correspondance-RefEquipement', name: 'Correspondance Ref Equipement',apiSchema:'correspondanceRefEquipement'},
+    { id: 'references-type-equipement', name: 'Liste des types d\'équipements',apiSchema:'typeEquipement'},
+      { id: 'references-mixelecs', name: 'Mix électriques par Pays',apiSchema:'mixelecs'},
+      { id: 'references-impact-reseaux', name: 'Facteurs d\'impact liés au réseau',apiSchema:'impactreseaux'},
+    { id: 'references-impact-equipements', name: 'Facteurs d\'impacts des équipements',apiSchema:'impactequipements'},
+    { id: 'references-impact-Messagerie', name: 'Facteurs d\'impact de la messagerie',apiSchema:'impactMessagerie'},
+    { id: 'references-hypotheses', name: 'Hypothèses',apiSchema:'hypotheses'},
+    { id: 'references-etapes', name: 'Etapes du cycle de vie prises en charge',apiSchema:'etapes'},
+    { id: 'references-criteres', name: 'Crtières pris en charge',apiSchema:'criteres'},
+    { id: 'references-correspondance-RefEquipement', name: 'Correspondances entre les modèles et les équipements de référence',apiSchema:'correspondanceRefEquipement'},
 
   ];
+
   public selectedRef: any = null;
   public showUploadDiv : boolean = false;
   /**
@@ -61,7 +62,7 @@ export class ReferentialComponent implements OnInit {
 
   uploadFile(file:any) {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', file,file.name);
     console.log(formData.get('file'))
     this.service.upload(formData,"mixelecs/csv").pipe(
         map((event:any) => {
@@ -174,6 +175,7 @@ export class ReferentialComponent implements OnInit {
 
   onSelectType(type:any) {
     this.selectedRef = type;
+    this.showUploadDiv = false;
   }
   closePopup() {
     this.selectedRef = null;
