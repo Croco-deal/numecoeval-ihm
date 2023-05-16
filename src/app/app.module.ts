@@ -7,17 +7,12 @@ import { SharedModule } from './shared/shared.module';
 import { TimelineModule } from './components/timeline/timeline.module';
 import { HistoryModule } from './components/history/history.module';
 import { ReferentialComponent } from './components/referential/referential.component';
-import { ReferentialListComponent } from './components/referential-list/referential-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ReferentialComponent,
-    ReferentialListComponent,
-  ],
+  declarations: [AppComponent, ReferentialComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

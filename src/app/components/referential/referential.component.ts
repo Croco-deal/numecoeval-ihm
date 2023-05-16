@@ -50,36 +50,21 @@ export class ReferentialComponent implements OnInit {
    * on file drop handler
    */
   onFileDropped($event:any) {
-    debugger
     this.prepareFilesList($event);
     console.log($event);
 
   }
 
   upload() {
-    debugger
     this.uploadFile(this.files[0])
-    // return this.service.postRefs(this.files[0],"mixelecs/csv").subscribe((response:any) => {
-    //   debugger
-    //   console.log(response)
-    // });
   }
 
   uploadFile(file:any) {
     const formData = new FormData();
-    var reader = new FileReader();
-    reader.onload = (event: any) => {
-      const localUrl = event.target.value;
-      debugger
-    }
-    reader.readAsBinaryString(file);
     formData.append('file', file);
     console.log(formData.get('file'))
-
     this.service.upload(formData,"mixelecs/csv").pipe(
         map((event:any) => {
-
-          debugger
           switch (event.type) {
             case HttpEventType.UploadProgress:
               file.progress = Math.round(event.loaded * 100 / event.total);
@@ -91,7 +76,6 @@ export class ReferentialComponent implements OnInit {
           }
         }),
         catchError((error: HttpErrorResponse) => {
-          debugger
           file.inProgress = false;
           return of(`${file.name} upload failed.`);
         })).subscribe((event: any) => {
@@ -156,9 +140,7 @@ export class ReferentialComponent implements OnInit {
 
   downloadCSVFile(){
     if(this.selectedRef){
-      debugger
       this.service.getRefsCSVFile(this.selectedRef.apiSchema) .subscribe((response:any) => {
-        debugger
         FileSaver.saveAs(response, this.selectedRef.apiSchema + '_'+ Date.now() + '.csv');
       });
     }
