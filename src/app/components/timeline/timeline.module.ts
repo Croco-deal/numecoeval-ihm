@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TimelineComponent } from './timeline/timeline.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ResultComponent } from './result/result.component'
+import {NgxUiLoaderModule} from "ngx-ui-loader";
 
 
 @NgModule({
@@ -13,10 +14,11 @@ import { ResultComponent } from './result/result.component'
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  imports: [
-    CommonModule,
-    BrowserModule
-  ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        NgxUiLoaderModule
+    ],
   exports: [
     TimelineComponent
   ]

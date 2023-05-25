@@ -1,9 +1,9 @@
 {
   "/api/*": {
-    "target": "https://api-referentiels-numecoeval.datahub.din.developpement-durable.gouv.fr",
+    "target": "http://localhost:18080",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",
-    "pathRewrite": {"^/api" : "https://api-referentiels-numecoeval.datahub.din.developpement-durable.gouv.fr"}
+    "pathRewrite": {"^/api" : "http://localhost:18080"}
   }
 }

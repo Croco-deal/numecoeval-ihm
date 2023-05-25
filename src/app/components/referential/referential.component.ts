@@ -6,6 +6,7 @@ import {catchError, map} from 'rxjs/operators';
 import {HttpErrorResponse, HttpEventType} from "@angular/common/http";
 import {of} from "rxjs";
 import * as FileSaver from 'file-saver';
+import {NgxUiLoaderService} from "ngx-ui-loader";
 @Component({
   selector: 'app-referential',
   templateUrl: './referential.component.html',
@@ -14,7 +15,7 @@ import * as FileSaver from 'file-saver';
 export class ReferentialComponent implements OnInit {
 
 
-  constructor(private router:Router,private service:ReferentialService) { }
+  constructor(private router:Router,private service:ReferentialService,private ngxService: NgxUiLoaderService) { }
 
   @ViewChild("fileDropRef", { static: false })
   fileDropEl!: ElementRef;
@@ -34,8 +35,8 @@ export class ReferentialComponent implements OnInit {
    */
   public types: any [] = [
     { id: 'references-type-equipement', name: 'Liste des types d\'équipements',apiSchema:'typeEquipement'},
-      { id: 'references-mixelecs', name: 'Mix électriques par Pays',apiSchema:'mixelecs'},
-      { id: 'references-impact-reseaux', name: 'Facteurs d\'impact liés au réseau',apiSchema:'impactreseaux'},
+    { id: 'references-mixelecs', name: 'Mix électriques par Pays',apiSchema:'mixelecs'},
+    { id: 'references-impact-reseaux', name: 'Facteurs d\'impact liés au réseau',apiSchema:'impactreseaux'},
     { id: 'references-impact-equipements', name: 'Facteurs d\'impacts des équipements',apiSchema:'impactequipements'},
     { id: 'references-impact-Messagerie', name: 'Facteurs d\'impact de la messagerie',apiSchema:'impactMessagerie'},
     { id: 'references-hypotheses', name: 'Hypothèses',apiSchema:'hypotheses'},
@@ -61,10 +62,11 @@ export class ReferentialComponent implements OnInit {
   }
 
   uploadFile(file:any) {
+    this.ngxService.start();
+    this.ngxService.startLoader("loader-01");
     const formData = new FormData();
-    formData.append('file', file,file.name);
-    console.log(formData.get('file'))
-    this.service.upload(formData,"mixelecs/csv").pipe(
+    formData.append('file', file,"test.csv");
+    this.service.upload(formData,this.selectedRef.apiSchema + "/csv").pipe(
         map((event:any) => {
           switch (event.type) {
             case HttpEventType.UploadProgress:
@@ -72,11 +74,15 @@ export class ReferentialComponent implements OnInit {
               break;
             case HttpEventType.Response:
               this.openPopup();
+              this.ngxService.stop();
+              this.ngxService.stopLoader("loader-01");
               this.uploadResult = event;
               return event;
           }
         }),
         catchError((error: HttpErrorResponse) => {
+          this.ngxService.stop();
+          this.ngxService.stopLoader("loader-01");
           file.inProgress = false;
           return of(`${file.name} upload failed.`);
         })).subscribe((event: any) => {
@@ -140,9 +146,13 @@ export class ReferentialComponent implements OnInit {
   }
 
   downloadCSVFile(){
+    this.ngxService.start();
+    this.ngxService.startLoader("loader-01");
     if(this.selectedRef){
       this.service.getRefsCSVFile(this.selectedRef.apiSchema) .subscribe((response:any) => {
         FileSaver.saveAs(response, this.selectedRef.apiSchema + '_'+ Date.now() + '.csv');
+        this.ngxService.stop();
+        this.ngxService.stopLoader("loader-01");
       });
     }
 

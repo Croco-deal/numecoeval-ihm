@@ -9,6 +9,7 @@ import { HistoryModule } from './components/history/history.module';
 import { ReferentialComponent } from './components/referential/referential.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
+import {NgxUiLoaderModule} from "ngx-ui-loader";
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { AgGridModule } from 'ag-grid-angular';
     TimelineModule,
     HistoryModule,
     HttpClientModule,
-    AgGridModule
+    AgGridModule,NgxUiLoaderModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

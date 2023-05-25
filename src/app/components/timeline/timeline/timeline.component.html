@@ -11,7 +11,28 @@
                 <span class="title">{{object.title}}</span>
             </div>
         </div>
-        <div class="upload">
+
+        <div class="init row text-center justify-content-center mb-5" *ngIf="progression === 0">
+            <div class="row text-center justify-content-center mb-5">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="date-lot">    Date   </span>
+                    </div>
+                    <input type="text" class="form-control" style="position: relative;opacity: 1" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="nom-lot">Nom du lot</span>
+                    </div>
+                    <input type="text" class="form-control" style="position: relative;opacity: 1" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                    <div class="invalid-tooltip">
+                        Please provide a valid city.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upload" *ngIf="progression > 0" >
             <div class="container upload" appDnd (fileDropped)="onFileDropped($event)">
                 <input type="file" accept=".csv" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
                 <h3>Glisser-déposer les fichiers ici </h3>
@@ -33,10 +54,17 @@
                     <img src="assets/img/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
                 </div>
             </div>
-            <div class="go-btns">
-                <a target="" class="btn btn-sm btn btn-success mb-0  mt-2 " (click)="next()">Continuer</a>
-                <a target="" class="btn btn-sm btn btn-danger mb-0 ms-xl-3  mt-2 ">Ignorer</a>
-            </div>
+        </div>
+        <div class="go-btns">
+            <a target="" class="btn btn-sm btn btn-danger mb-0 mr-2  mt-2 " (click)="next()">Retour</a>
+            <a target="" class="btn btn-sm btn btn-success mb-0  mt-2 " (click)="next()">Continuer</a>
+            <a target="" class="btn btn-sm btn btn-danger mb-0 ms-xl-3  mt-2 " (click)="next()">Ignorer</a>
         </div>
     </div>
+</div>
+
+<div style="position: relative">
+    <!-- the position of the parent container must be set to relative -->
+    <!-- It is really important to set loaderId for non-master loader -->
+    <ngx-ui-loader [loaderId]="'loader-01'"></ngx-ui-loader>
 </div>
