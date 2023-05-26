@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  refApiURL : '/api'
+  refApiURL : '/ref',
+  entreeApiURL : 'http://localhost:18081'
 };
 
 /*

@@ -65,7 +65,7 @@ export class ReferentialComponent implements OnInit {
     this.ngxService.start();
     this.ngxService.startLoader("loader-01");
     const formData = new FormData();
-    formData.append('file', file,"test.csv");
+    formData.append('file', file,file.name);
     this.service.upload(formData,this.selectedRef.apiSchema + "/csv").pipe(
         map((event:any) => {
           switch (event.type) {

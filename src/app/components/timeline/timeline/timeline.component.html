@@ -1,3 +1,6 @@
+<div>
+    <ngx-ui-loader [overlayColor]="'rgba(40, 40, 40, 0.8)'" [logoSize]="200" [loaderId]="'loader-01'"></ngx-ui-loader>
+</div>
 <div class="container mt-5">
     <div class="uploader">
         <div class="row text-center justify-content-center mb-5">
@@ -6,7 +9,7 @@
             </div>
         </div>
         <div class="timeline-steps">
-            <div class="timeline-step" [class.active]="i+1 <= progression" *ngFor="let object of timeline;let i = index;">
+            <div class="timeline-step" [class.active]="i+1 <= progression" *ngFor="let object of blocks;let i = index;">
                 <span class="circle">{{object.id}} </span>
                 <span class="title">{{object.title}}</span>
             </div>
@@ -16,25 +19,31 @@
             <div class="row text-center justify-content-center mb-5">
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
+                        <span class="input-group-text" id="nom-lot">Nom du lot</span>
+                    </div>
+                    <input type="text" class="form-control" required [(ngModel)]="batchName" style="position: relative;opacity: 1" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div *ngIf="batchNameAlert" class="alert">Le nom du lot est obligatoire.</div>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
                         <span class="input-group-text" id="date-lot">    Date   </span>
                     </div>
-                    <input type="text" class="form-control" style="position: relative;opacity: 1" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control"  [(ngModel)]="batchDate" style="position: relative;opacity: 1" aria-label="Large" aria-describedby="inputGroup-sizing-sm"
+                           id="batchDate" name="batchDate" class="form-control" required minlength="4"
+                    >
                 </div>
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="nom-lot">Nom du lot</span>
+                        <span class="input-group-text" id="nom-org">Nom de l'Organisation</span>
                     </div>
-                    <input type="text" class="form-control" style="position: relative;opacity: 1" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
-                    <div class="invalid-tooltip">
-                        Please provide a valid city.
-                    </div>
+                    <input type="text" class="form-control" required [(ngModel)]="batchOrgName" style="position: relative;opacity: 1" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
                 </div>
             </div>
         </div>
 
         <div class="upload" *ngIf="progression > 0" >
             <div class="container upload" appDnd (fileDropped)="onFileDropped($event)">
-                <input type="file" accept=".csv" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+                <input type="file" accept=".csv" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)" />
                 <h3>Glisser-déposer les fichiers ici </h3>
                 <h3>ou</h3>
                 <label for="fileDropRef">sélectionner une fichier</label>
@@ -44,27 +53,48 @@
                     <img src="assets/img/ic-file.svg" width="45px" alt="file">
                     <div class="info">
                         <h4 class="name">
-                            {{ file?.name }}
+                            {{ 'Fichier selectionn pour le block "'+ file?.title + '" : ' +file?.file?.name }}
                         </h4>
-                        <p class="size">
-                            {{ formatBytes(file?.size) }}
-                        </p>
-                        <app-progress [progress]="file?.progress"></app-progress>
+                        <app-progress [progress]="file.file?.progress"></app-progress>
                     </div>
                     <img src="assets/img/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
                 </div>
             </div>
         </div>
         <div class="go-btns">
-            <a target="" class="btn btn-sm btn btn-danger mb-0 mr-2  mt-2 " (click)="next()">Retour</a>
-            <a target="" class="btn btn-sm btn btn-success mb-0  mt-2 " (click)="next()">Continuer</a>
+            <a target="" class="btn btn-sm btn btn-danger mb-0 mr-2  mt-2 " (click)="back()">Retour</a>
+            <a target="" *ngIf="this.progression < this.blocks.length" class="btn btn-sm btn btn-success mb-0  mt-2 " (click)="next()">Continuer</a>
+            <a target="" *ngIf="this.progression === this.blocks.length" class="btn btn-sm btn btn-success mb-0  mt-2 " (click)="uploadFiles()">Charger</a>
             <a target="" class="btn btn-sm btn btn-danger mb-0 ms-xl-3  mt-2 " (click)="next()">Ignorer</a>
         </div>
     </div>
-</div>
 
-<div style="position: relative">
-    <!-- the position of the parent container must be set to relative -->
-    <!-- It is really important to set loaderId for non-master loader -->
-    <ngx-ui-loader [loaderId]="'loader-01'"></ngx-ui-loader>
+
+<!--modal-->
+
+    <div
+            class="modal"
+            tabindex="-1"
+            role="dialog"
+            [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Fichier(s) pour le lot {{batchName}} chargé(s) avec succès</h4>
+                </div>
+                <div class="modal-body">
+                    <p>La réponse du serveur {{uploadResult}}</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger"
+                            (click)="initScreen()">
+                        Terminer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>

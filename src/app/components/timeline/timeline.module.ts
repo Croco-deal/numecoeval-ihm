@@ -4,6 +4,7 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ResultComponent } from './result/result.component'
 import {NgxUiLoaderModule} from "ngx-ui-loader";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {NgxUiLoaderModule} from "ngx-ui-loader";
     imports: [
         CommonModule,
         BrowserModule,
-        NgxUiLoaderModule
+        NgxUiLoaderModule,
+        FormsModule
     ],
   exports: [
     TimelineComponent
