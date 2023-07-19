@@ -1,9 +1,16 @@
+# IHM d'administration
+
+Ce module permet la manipulation des données de référence et des données d'entrées via une IHM très simple.
+
+## License
+Le projet est sous licence Apache 2
+
+## build
+
 docker build -t numecoeval-dashboard .
 
 docker run -d -p 80:80 numecoeval-dashboard
 
-
-# M4g
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
 
