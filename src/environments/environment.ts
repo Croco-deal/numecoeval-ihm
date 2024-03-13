@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   refApiURL : '/ref',
-  entreeApiURL : 'http://localhost:18081'
+  entreeApiURL : 'http://localhost:18081',
+  //superset: {
+    //enabled: window[<any>'env'][<any>'supersetEnabled'] || true
+  //},
 };
 
 /*

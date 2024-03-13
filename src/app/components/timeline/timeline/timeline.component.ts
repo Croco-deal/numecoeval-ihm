@@ -96,7 +96,6 @@ export class TimelineComponent implements OnInit {
    * @param files (Files List)
    */
   prepareFilesList(files: Array<any>) {
-    debugger
     for (const item of files) {
       item.progress = 100;
       const selectedBlock = this.blocks[this.progression]
@@ -115,7 +114,6 @@ export class TimelineComponent implements OnInit {
     if(!this.batchNameAlert ){
       this.progression ++;
       if(this.progression > this.blocks.length){
-        debugger
         // this.router.navigate(['/result'], { replaceUrl: true }).then();
       }
     }
@@ -127,7 +125,6 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {}
 
   uploadFiles() {
-    debugger
     this.ngxService.start();
     this.ngxService.startLoader("loader-01");
     const formData = new FormData();
@@ -136,11 +133,9 @@ export class TimelineComponent implements OnInit {
     formData.append("nomOrganisation",this.batchOrgName);
     this.files.forEach(file=>{
       if(file && file.file){
-        debugger
         formData.append(file.csvSchema, file.file, file.file.name);
       }
     })
-    debugger
     this.service.upload(formData).pipe(
         map((event:any) => {
           switch (event.type) {
@@ -150,7 +145,6 @@ export class TimelineComponent implements OnInit {
               this.openPopup();
               this.ngxService.stop();
               this.ngxService.stopLoader("loader-01");
-              debugger
               this.uploadResult = JSON.stringify(event.body);
               return event;
           }

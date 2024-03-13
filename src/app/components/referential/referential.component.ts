@@ -149,7 +149,7 @@ export class ReferentialComponent implements OnInit {
     this.ngxService.start();
     this.ngxService.startLoader("loader-01");
     if(this.selectedRef){
-      this.service.getRefsCSVFile(this.selectedRef.apiSchema) .subscribe((response:any) => {
+      this.service.getRefsCSVFile(this.selectedRef.apiSchema).subscribe((response:any) => {
         FileSaver.saveAs(response, this.selectedRef.apiSchema + '_'+ Date.now() + '.csv');
         this.ngxService.stop();
         this.ngxService.stopLoader("loader-01");

@@ -10,10 +10,11 @@ import { ReferentialComponent } from './components/referential/referential.compo
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import {NgxUiLoaderModule} from "ngx-ui-loader";
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ReferentialComponent],
+  declarations: [AppComponent, ReferentialComponent, DashboardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

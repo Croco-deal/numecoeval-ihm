@@ -6,7 +6,7 @@ import { environment } from './../../environments/environment';
   providedIn: 'root'
 })
 export class ReferentialService {
-  private url = environment.refApiURL + '/referentiel/';
+  private url = 'api/referentiel/';
   constructor(private httpClient: HttpClient) { }
 
   /**

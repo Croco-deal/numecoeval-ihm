@@ -18,6 +18,7 @@
         "@angular/platform-browser": "^14.0.0",
         "@angular/platform-browser-dynamic": "^14.0.0",
         "@angular/router": "^14.0.0",
+        "@superset-ui/embedded-sdk": "^0.1.0-alpha.10",
         "ag-grid-angular": "^29.3.4",
         "bootstrap": "^5.2.3",
         "file-saver": "^2.0.5",
